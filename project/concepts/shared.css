@@ -1,0 +1,47 @@
+/* Hog Dog Media — logo concept shared tokens */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bungee&family=Bowlby+One+SC&family=DM+Serif+Display:ital@0;1&family=Rubik+Mono+One&family=Monoton&family=Abril+Fatface&family=Space+Grotesk:wght@400;500;700&family=Special+Elite&family=Alfa+Slab+One&family=Staatliches&family=Caveat+Brush&family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&display=swap');
+
+:root {
+  --hd-cream: #F5E8D5;
+  --hd-coral: #D88B6E;
+  --hd-salmon: #E8A48A;
+  --hd-hog: #C98F76;
+  --hd-dog: #B8BCC0;
+  --hd-dog-dark: #5C6166;
+  --hd-ink: #0E0E10;
+  --hd-ink-warm: #1A1613;
+  --hd-paper: #EFE6D3;
+  --hd-blood: #8B2E1F;
+  --hd-gold: #C79B54;
+}
+
+.artboard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.ab-caption {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.ab-num {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  opacity: 0.4;
+}

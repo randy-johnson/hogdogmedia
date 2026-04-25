@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hog Dog Media — Logo Concepts</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="concepts/shared.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #f0eee9; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    body { height: 100vh; overflow: hidden; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="concepts/C01.jsx"></script>
+  <script type="text/babel" src="concepts/C02.jsx"></script>
+  <script type="text/babel" src="concepts/C03.jsx"></script>
+  <script type="text/babel" src="concepts/C04.jsx"></script>
+  <script type="text/babel" src="concepts/C05.jsx"></script>
+  <script type="text/babel" src="concepts/C06.jsx"></script>
+  <script type="text/babel" src="concepts/C07.jsx"></script>
+  <script type="text/babel" src="concepts/C08.jsx"></script>
+  <script type="text/babel" src="concepts/C09.jsx"></script>
+  <script type="text/babel" src="concepts/C10.jsx"></script>
+  <script type="text/babel" src="concepts/C11.jsx"></script>
+  <script type="text/babel" src="concepts/C12.jsx"></script>
+
+  <script type="text/babel">
+    const W = 560, H = 360;
+    function App() {
+      return (
+        <DesignCanvas>
+          <DCSection id="literal" title="Literal mascot" subtitle="Hog + dog illustrated, head-to-head">
+            <DCArtboard id="c01" label="01 · Mascot refreshed" width={W} height={H}><Concept01/></DCArtboard>
+            <DCArtboard id="c02" label="02 · Flat editorial" width={W} height={H}><Concept02/></DCArtboard>
+            <DCArtboard id="c06" label="06 · Duotone silhouettes" width={W} height={H}><Concept06/></DCArtboard>
+            <DCArtboard id="c07" label="07 · Retro badge" width={W} height={H}><Concept07/></DCArtboard>
+            <DCArtboard id="c08" label="08 · Enamel pin" width={W} height={H}><Concept08/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="stylized" title="Stylized" subtitle="Recognizable, simplified, conceptual">
+            <DCArtboard id="c03" label="03 · Single-line contour" width={W} height={H}><Concept03/></DCArtboard>
+            <DCArtboard id="c09" label="09 · Cassette" width={W} height={H}><Concept09/></DCArtboard>
+            <DCArtboard id="c11" label="11 · Punk stencil" width={W} height={H}><Concept11/></DCArtboard>
+            <DCArtboard id="c12" label="12 · Ampersand mark" width={W} height={H}><Concept12/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="abstract" title="Abstract marks" subtitle="No literal animals — duality via geometry">
+            <DCArtboard id="c04" label="04 · HD monogram" width={W} height={H}><Concept04/></DCArtboard>
+            <DCArtboard id="c05" label="05 · Yin-yang mark" width={W} height={H}><Concept05/></DCArtboard>
+            <DCArtboard id="c10" label="10 · Broadcast eye" width={W} height={H}><Concept10/></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

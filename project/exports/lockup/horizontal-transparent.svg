@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 600" width="1600" height="600">
+  <title>Hog Dog Media — Horizontal Lockup</title>
+  <defs>
+    
+  </defs>
+  
+  <text x="678" y="335" class="word" text-anchor="end">HOG</text>
+  <image xlink:href="../raster/mascot-1024.png" x="680" y="155" width="240" height="240" preserveAspectRatio="xMidYMid meet"></image>
+  <text x="922" y="335" class="word">DOG</text>
+  <text x="800" y="395" class="label" text-anchor="middle">MEDIA</text>
+  <line x1="617" y1="412" x2="727" y2="412" stroke="#D88B6E" stroke-width="3"></line>
+  <line x1="873" y1="412" x2="983" y2="412" stroke="#D88B6E" stroke-width="3"></line>
+</svg>

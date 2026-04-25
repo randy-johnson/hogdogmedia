@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <title>Hog Dog Media — Stacked Lockup</title>
+  <defs>
+    
+  </defs>
+  
+  
+  <image xlink:href="../raster/mascot-1024.png" x="262" y="140" width="500" height="500" preserveAspectRatio="xMidYMid meet"></image>
+  
+  <text x="512" y="800" class="word" text-anchor="middle">HOG DOG</text>
+  
+  <line x1="338" y1="868" x2="430" y2="868" stroke="#D88B6E" stroke-width="3"></line>
+  <text x="512" y="876" class="label" text-anchor="middle">MEDIA</text>
+  <line x1="594" y1="868" x2="686" y2="868" stroke="#D88B6E" stroke-width="3"></line>
+</svg>

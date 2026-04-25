@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hog Dog Media — Usage Mocks</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="concepts/shared.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #f0eee9; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    body { height: 100vh; overflow: hidden; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="mocks/Logo.jsx"></script>
+  <script type="text/babel" src="mocks/MockYouTube.jsx"></script>
+  <script type="text/babel" src="mocks/MockAvatars.jsx"></script>
+  <script type="text/babel" src="mocks/MockFavicon.jsx"></script>
+  <script type="text/babel" src="mocks/MockTshirt.jsx"></script>
+  <script type="text/babel" src="mocks/MockSocial.jsx"></script>
+  <script type="text/babel" src="mocks/MockBumper.jsx"></script>
+
+  <script type="text/babel">
+    function App() {
+      return (
+        <DesignCanvas>
+          <DCSection id="web" title="Web & video" subtitle="Where it lives day-to-day">
+            <DCArtboard id="yt" label="YouTube channel" width={920} height={500}><MockYouTube/></DCArtboard>
+            <DCArtboard id="bumper" label="Animated intro bumper" width={620} height={420}><MockBumper/></DCArtboard>
+            <DCArtboard id="fav" label="Favicon · browser tab" width={520} height={400}><MockFavicon/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="social" title="Social presence" subtitle="Avatars and posts">
+            <DCArtboard id="av" label="Avatars · scale set" width={720} height={320}><MockAvatars/></DCArtboard>
+            <DCArtboard id="post" label="Social post · 1:1" width={560} height={560}><MockSocialPost/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="merch" title="Merch" subtitle="Three-color tee program">
+            <DCArtboard id="tee" label="T-shirts · cream / black / coral" width={820} height={380}><MockTshirt/></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

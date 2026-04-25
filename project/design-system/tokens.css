@@ -1,0 +1,137 @@
+/* Hog Dog Media — Design System Tokens
+ * Built around the V2 ampersand logo: cream paper, ink, coral accent,
+ * with hog-tan and dog-gray as supporting brand neutrals.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap');
+
+:root {
+  /* ── Brand palette ─────────────────────────── */
+  --hd-cream:        #F5E8D5;   /* primary surface */
+  --hd-paper:        #EFE6D3;   /* secondary surface, slightly darker */
+  --hd-ink:          #0E0E10;   /* primary text, key contrast */
+  --hd-ink-warm:     #1A1613;   /* alt dark surface */
+  --hd-coral:        #D88B6E;   /* primary accent */
+  --hd-coral-deep:   #B86A4D;   /* coral hover/pressed */
+  --hd-blood:        #8B2E1F;   /* alert / drop accent */
+
+  /* ── Animal neutrals (from the mascot) ─────── */
+  --hd-hog-tan:      #C98F76;
+  --hd-hog-shadow:   #8C5B46;
+  --hd-dog-gray:     #B8BCC0;
+  --hd-dog-shadow:   #5C6166;
+
+  /* ── Functional UI grays (warm-tinted) ─────── */
+  --hd-line:         rgba(14, 14, 16, 0.12);
+  --hd-line-strong:  rgba(14, 14, 16, 0.22);
+  --hd-mute:         rgba(14, 14, 16, 0.55);
+  --hd-mute-2:       rgba(14, 14, 16, 0.40);
+
+  /* ── Type scale ────────────────────────────── */
+  --hd-font-display: 'Anton', 'Bebas Neue', sans-serif;
+  --hd-font-editorial: 'Fraunces', 'Georgia', serif;
+  --hd-font-body:    'Space Grotesk', system-ui, sans-serif;
+
+  --hd-size-hero:    96px;
+  --hd-size-h1:      64px;
+  --hd-size-h2:      40px;
+  --hd-size-h3:      24px;
+  --hd-size-body:    16px;
+  --hd-size-small:   13px;
+  --hd-size-eyebrow: 11px;
+
+  --hd-leading-display: 0.9;
+  --hd-leading-body:    1.55;
+
+  /* ── Spacing (8pt) ─────────────────────────── */
+  --hd-1: 4px;  --hd-2: 8px;  --hd-3: 12px; --hd-4: 16px;
+  --hd-5: 24px; --hd-6: 32px; --hd-7: 48px; --hd-8: 64px;
+  --hd-9: 96px;
+
+  /* ── Radii & elevation ─────────────────────── */
+  --hd-r-sm: 4px; --hd-r-md: 8px; --hd-r-lg: 14px; --hd-r-pill: 999px;
+  --hd-shadow-1: 0 1px 2px rgba(14,14,16,0.08), 0 2px 6px rgba(14,14,16,0.06);
+  --hd-shadow-2: 0 6px 16px rgba(14,14,16,0.10), 0 12px 28px rgba(14,14,16,0.08);
+}
+
+/* ── Base ──────────────────────────────────── */
+.hd-app, .hd-app * { box-sizing: border-box; }
+.hd-app {
+  background: var(--hd-cream);
+  color: var(--hd-ink);
+  font-family: var(--hd-font-body);
+  font-size: var(--hd-size-body);
+  line-height: var(--hd-leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Type utilities ────────────────────────── */
+.hd-eyebrow {
+  font-family: var(--hd-font-body);
+  font-size: var(--hd-size-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--hd-coral);
+}
+.hd-display {
+  font-family: var(--hd-font-display);
+  font-size: var(--hd-size-hero);
+  line-height: var(--hd-leading-display);
+  letter-spacing: -0.01em;
+}
+.hd-h1 { font-family: var(--hd-font-display); font-size: var(--hd-size-h1); line-height: 0.95; letter-spacing: -0.01em; }
+.hd-h2 { font-family: var(--hd-font-display); font-size: var(--hd-size-h2); line-height: 1.0; letter-spacing: -0.01em; }
+.hd-h3 { font-family: var(--hd-font-editorial); font-size: var(--hd-size-h3); line-height: 1.2; font-weight: 600; }
+.hd-lead { font-size: 18px; line-height: 1.5; color: var(--hd-mute); }
+
+/* ── Components ────────────────────────────── */
+.hd-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--hd-ink); color: var(--hd-cream);
+  border: none; border-radius: var(--hd-r-pill);
+  padding: 12px 22px;
+  font-family: var(--hd-font-body); font-weight: 600; font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer; transition: transform .15s ease, background .15s;
+}
+.hd-btn:hover { transform: translateY(-1px); }
+.hd-btn--coral { background: var(--hd-coral); color: var(--hd-ink); }
+.hd-btn--coral:hover { background: var(--hd-coral-deep); }
+.hd-btn--ghost { background: transparent; color: var(--hd-ink); border: 1.5px solid var(--hd-ink); }
+
+.hd-card {
+  background: #FFFCF4;
+  border: 1px solid var(--hd-line);
+  border-radius: var(--hd-r-md);
+  padding: var(--hd-5);
+  box-shadow: var(--hd-shadow-1);
+}
+
+.hd-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--hd-paper);
+  border: 1px solid var(--hd-line);
+  color: var(--hd-ink);
+  border-radius: var(--hd-r-pill);
+  padding: 4px 10px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hd-tag--coral { background: var(--hd-coral); border-color: transparent; }
+
+.hd-input {
+  background: #FFFCF4;
+  border: 1.5px solid var(--hd-line);
+  border-radius: var(--hd-r-md);
+  padding: 10px 14px;
+  font-family: inherit; font-size: 14px; color: var(--hd-ink);
+  outline: none; transition: border-color .15s;
+}
+.hd-input:focus { border-color: var(--hd-coral); }
+
+.hd-divider { height: 1px; background: var(--hd-line); border: 0; }
+
+/* mini lockup helper */
+.hd-mini-lockup { display: inline-flex; align-items: center; gap: 6px; }
+.hd-mini-lockup .w { font-family: var(--hd-font-display); font-size: 22px; line-height: 0.86; letter-spacing: -0.01em; }
+.hd-mini-lockup img { width: 26px; height: 26px; object-fit: contain; }

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hog Dog Media — Logo Exports</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="design-system/tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg-cream, #F5E8D5);
+      color: var(--ink, #0E0E10);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 64px 32px 120px; }
+
+    /* Header */
+    .hero { display: flex; flex-direction: column; gap: 16px; padding-bottom: 56px; border-bottom: 1px solid rgba(14,14,16,0.12); margin-bottom: 56px; }
+    .eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.32em; text-transform: uppercase; color: #D88B6E; }
+    h1 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 72px; line-height: 1; letter-spacing: -0.02em; margin: 0; }
+    .lead { max-width: 700px; font-size: 18px; line-height: 1.55; opacity: 0.78; margin: 0; }
+
+    /* Section */
+    section { margin-bottom: 80px; }
+    h2 { font-family: 'Anton', sans-serif; font-size: 36px; line-height: 1; letter-spacing: 0.5px; margin: 0 0 8px; text-transform: uppercase; }
+    .section-sub { font-size: 14px; opacity: 0.6; margin: 0 0 32px; }
+
+    /* Cards */
+    .grid { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 880px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(14,14,16,0.10);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .card-preview {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      overflow: hidden;
+    }
+    .card-preview.square { aspect-ratio: 1 / 1; }
+    .card-preview.cream { background: #F5E8D5; }
+    .card-preview.dark { background: #0E0E10; }
+    .card-preview.checker {
+      background-color: #fafafa;
+      background-image:
+        linear-gradient(45deg, #ddd 25%, transparent 25%),
+        linear-gradient(-45deg, #ddd 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ddd 75%),
+        linear-gradient(-45deg, transparent 75%, #ddd 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, 10px 0;
+    }
+    .card-preview img { max-width: 88%; max-height: 88%; object-fit: contain; }
+    .card-preview.tight img { max-width: 70%; max-height: 70%; }
+
+    .card-meta {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(14,14,16,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .file-name { font-family: 'Space Grotesk', monospace; font-size: 13px; font-weight: 500; color: #0E0E10; word-break: break-all; }
+    .file-info { font-size: 12px; opacity: 0.6; display: flex; gap: 12px; }
+    .file-info span { display: inline-block; }
+    .download-btn {
+      align-self: flex-start;
+      margin-top: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0E0E10;
+      text-decoration: none;
+      padding: 8px 14px;
+      background: #F5E8D5;
+      border-radius: 999px;
+      border: 1px solid rgba(14,14,16,0.15);
+      transition: background 0.15s;
+    }
+    .download-btn:hover { background: #D88B6E; color: #fff; }
+
+    /* Tiny preview row (favicons) */
+    .favicon-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 32px;
+      background: #fff;
+      border: 1px solid rgba(14,14,16,0.10);
+      border-radius: 6px;
+      flex-wrap: wrap;
+    }
+    .favicon-row figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .favicon-row figcaption { font-size: 11px; opacity: 0.6; font-family: 'Space Grotesk', monospace; }
+    .favicon-row img { display: block; image-rendering: auto; }
+
+    /* Decision panel */
+    .decision {
+      background: #0E0E10;
+      color: #F5E8D5;
+      padding: 48px;
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    @media (max-width: 880px) { .decision { grid-template-columns: 1fr; padding: 32px; } }
+    .decision h3 { font-family: 'Anton', sans-serif; font-size: 28px; margin: 0 0 16px; text-transform: uppercase; }
+    .decision p { font-size: 15px; line-height: 1.6; opacity: 0.85; margin: 0 0 12px; }
+    .decision .pros { color: #B8D4A8; }
+    .decision .cons { color: #D88B6E; }
+    .decision strong { font-weight: 600; }
+
+    /* Notes panel */
+    .notes {
+      background: rgba(14,14,16,0.04);
+      border-left: 3px solid #D88B6E;
+      padding: 24px 28px;
+      margin-top: 24px;
+      border-radius: 0 4px 4px 0;
+    }
+    .notes p { margin: 0 0 8px; font-size: 14px; line-height: 1.55; }
+    .notes p:last-child { margin: 0; }
+
+    /* Bundle CTA */
+    .bundle {
+      margin-top: 80px;
+      padding: 56px 48px;
+      background: #F5E8D5;
+      border: 2px dashed rgba(14,14,16,0.2);
+      border-radius: 6px;
+      text-align: center;
+    }
+    .bundle h3 { font-family: 'Anton', sans-serif; font-size: 32px; margin: 0 0 12px; text-transform: uppercase; }
+    .bundle p { margin: 0 0 24px; opacity: 0.78; }
+    .bundle code { font-family: 'Space Grotesk', monospace; font-size: 13px; background: rgba(14,14,16,0.08); padding: 4px 8px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="eyebrow">Logo File Exports</span>
+      <h1>The package.</h1>
+      <p class="lead">Everything you need to put the logo in the world — vectors, rasters, favicons, and avatar masks. Each file is documented with its intended use so you can decide what to ship and what to revise.</p>
+    </header>
+
+    <!-- ─────────── PRIMARY LOCKUPS ─────────── -->
+    <section>
+      <h2>Primary lockups</h2>
+      <p class="section-sub">The full HOG &lt;mascot&gt; DOG mark — V2 ampersand, locked. Use these in any first-position context: hero, brand pages, intro frames.</p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-preview cream"><img src="exports/lockup/horizontal-cream-1600.png" alt="Horizontal lockup, cream"></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-cream-1600.png</span>
+            <span class="file-info"><span>1600×600 PNG</span><span>Default light bg</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-cream-1600.png" download>Download PNG</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview dark"><img src="exports/lockup/horizontal-dark-1600.png" alt="Horizontal lockup, dark"></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-dark-1600.png</span>
+            <span class="file-info"><span>1600×600 PNG</span><span>Dark mode / video</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-dark-1600.png" download>Download PNG</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview cream square tight"><img src="exports/lockup/stacked-cream-1024.png" alt="Stacked lockup, cream"></div>
+          <div class="card-meta">
+            <span class="file-name">stacked-cream-1024.png</span>
+            <span class="file-info"><span>1024×1024 PNG</span><span>Avatar / square</span></span>
+            <a class="download-btn" href="exports/lockup/stacked-cream-1024.png" download>Download PNG</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview dark square tight"><img src="exports/lockup/stacked-dark-1024.png" alt="Stacked lockup, dark"></div>
+          <div class="card-meta">
+            <span class="file-name">stacked-dark-1024.png</span>
+            <span class="file-info"><span>1024×1024 PNG</span><span>Dark avatar</span></span>
+            <a class="download-btn" href="exports/lockup/stacked-dark-1024.png" download>Download PNG</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid-2" style="margin-top: 20px;">
+        <article class="card">
+          <div class="card-preview checker"><img src="exports/lockup/horizontal-transparent-1600.png" alt="Horizontal lockup, transparent dark text"></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-transparent-1600.png</span>
+            <span class="file-info"><span>1600×600 PNG</span><span>Transparent · dark text</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-transparent-1600.png" download>Download PNG</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview checker dark"><img src="exports/lockup/horizontal-transparent-light-1600.png" alt="Horizontal lockup, transparent light text"></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-transparent-light-1600.png</span>
+            <span class="file-info"><span>1600×600 PNG</span><span>Transparent · light text</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-transparent-light-1600.png" download>Download PNG</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="notes">
+        <p><strong>SVG masters available:</strong> <code>horizontal-cream.svg</code>, <code>horizontal-dark.svg</code>, <code>stacked-cream.svg</code>. These reference the mascot art as an embedded raster (since the mascot is an illustration, not a clean vector).</p>
+        <p>For a fully vector-only file (mascot redrawn as paths) — see the <strong>vector trace</strong> section below.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── MASCOT ALONE ─────────── -->
+    <section>
+      <h2>Mascot — standalone</h2>
+      <p class="section-sub">The yin-yang mark on its own, no wordmark. Use for: app icons, small navbar marks, social profile pictures, watermarks, podcast cover thumbnails.</p>
+
+      <div class="grid grid-4">
+        <article class="card">
+          <div class="card-preview checker tight"><img src="exports/raster/mascot-2048.png" alt="Mascot 2048"></div>
+          <div class="card-meta">
+            <span class="file-name">mascot-2048.png</span>
+            <span class="file-info"><span>2048×1767</span></span>
+            <a class="download-btn" href="exports/raster/mascot-2048.png" download>Download</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview checker tight"><img src="exports/raster/mascot-1024.png" alt="Mascot 1024"></div>
+          <div class="card-meta">
+            <span class="file-name">mascot-1024.png</span>
+            <span class="file-info"><span>1024×884</span></span>
+            <a class="download-btn" href="exports/raster/mascot-1024.png" download>Download</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview checker tight"><img src="exports/raster/mascot-512.png" alt="Mascot 512"></div>
+          <div class="card-meta">
+            <span class="file-name">mascot-512.png</span>
+            <span class="file-info"><span>512×442</span></span>
+            <a class="download-btn" href="exports/raster/mascot-512.png" download>Download</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview checker tight"><img src="exports/raster/mascot-256.png" alt="Mascot 256"></div>
+          <div class="card-meta">
+            <span class="file-name">mascot-256.png</span>
+            <span class="file-info"><span>256×221</span></span>
+            <a class="download-btn" href="exports/raster/mascot-256.png" download>Download</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="notes">
+        <p>Source mascot is <strong>5146×4440 PNG</strong> (transparent background). All renders preserve the original aspect ratio. Below 64px the detail starts to degrade — for very small contexts (favicon, OS dock icon) use the dedicated favicon files in the next section, which include a cream backdrop for legibility.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── FAVICONS ─────────── -->
+    <section>
+      <h2>Favicons &amp; app icons</h2>
+      <p class="section-sub">Cream-bg variants — at 16/32 px the transparent mascot disappears against light browser tabs, so these get a flat #F5E8D5 fill behind them. PWA + Apple touch sizes included.</p>
+
+      <div class="favicon-row">
+        <figure><img src="exports/favicon/favicon-16.png" width="16" alt=""><figcaption>16×16</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-32.png" width="32" alt=""><figcaption>32×32</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-48.png" width="48" alt=""><figcaption>48×48</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-64.png" width="64" alt=""><figcaption>64×64</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-180.png" width="90" alt=""><figcaption>180 (Apple)</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-192.png" width="96" alt=""><figcaption>192 (PWA)</figcaption></figure>
+        <figure><img src="exports/favicon/favicon-512.png" width="120" alt=""><figcaption>512 (PWA)</figcaption></figure>
+      </div>
+
+      <div class="notes">
+        <p><strong>HTML snippet</strong> — drop into &lt;head&gt;:</p>
+        <p style="font-family: 'Space Grotesk', monospace; font-size: 12px; line-height: 1.7;">
+          &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"&gt;<br>
+          &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"&gt;<br>
+          &lt;link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png"&gt;<br>
+          &lt;link rel="manifest" href="/site.webmanifest"&gt;
+        </p>
+      </div>
+    </section>
+
+    <!-- ─────────── AVATARS ─────────── -->
+    <section>
+      <h2>Round avatars</h2>
+      <p class="section-sub">Circle-cropped versions for social profile photos (X, YouTube channel icon, Instagram, podcast platforms).</p>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-preview cream square"><img src="exports/avatars/avatar-1024.png" alt="Round avatar"></div>
+          <div class="card-meta">
+            <span class="file-name">avatar-1024.png</span>
+            <span class="file-info"><span>1024×1024</span><span>Hi-res</span></span>
+            <a class="download-btn" href="exports/avatars/avatar-1024.png" download>Download</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview cream square"><img src="exports/avatars/avatar-512.png" alt="Round avatar"></div>
+          <div class="card-meta">
+            <span class="file-name">avatar-512.png</span>
+            <span class="file-info"><span>512×512</span><span>Standard social</span></span>
+            <a class="download-btn" href="exports/avatars/avatar-512.png" download>Download</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview cream square"><img src="exports/avatars/avatar-256.png" alt="Round avatar"></div>
+          <div class="card-meta">
+            <span class="file-name">avatar-256.png</span>
+            <span class="file-info"><span>256×256</span><span>Smaller platforms</span></span>
+            <a class="download-btn" href="exports/avatars/avatar-256.png" download>Download</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─────────── SVG VECTOR ─────────── -->
+    <section>
+      <h2>SVG &amp; vector files</h2>
+      <p class="section-sub">For when you need infinite scalability — print, embroidery, signage. Two approaches, document below.</p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-preview cream"><img src="exports/lockup/horizontal-cream.svg" alt=""></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-cream.svg</span>
+            <span class="file-info"><span>Hybrid — text vector + mascot raster</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-cream.svg" download>Download SVG</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-preview dark"><img src="exports/lockup/horizontal-dark.svg" alt=""></div>
+          <div class="card-meta">
+            <span class="file-name">horizontal-dark.svg</span>
+            <span class="file-info"><span>Hybrid — text vector + mascot raster</span></span>
+            <a class="download-btn" href="exports/lockup/horizontal-dark.svg" download>Download SVG</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="decision" style="margin-top: 32px;">
+        <div>
+          <h3>Hybrid SVG (above)</h3>
+          <p class="pros"><strong>✓ Pros:</strong> Wordmark stays crisp at any size. Editable in Illustrator/Figma. Color tokens controllable via fill attributes.</p>
+          <p class="cons"><strong>✗ Cons:</strong> Mascot is still a raster reference inside the SVG — when scaled past ~3000px it'll start to blur. Not suitable for vinyl cutting or single-color print.</p>
+          <p style="margin-top:16px;"><strong>Use for:</strong> web, slides, video, anywhere you'd otherwise use a high-res PNG.</p>
+        </div>
+        <div>
+          <h3>Vector trace (next step)</h3>
+          <p class="pros"><strong>✓ Pros:</strong> Truly infinite scaling. Single-color variants possible. Editable as paths. Smaller file size.</p>
+          <p class="cons"><strong>✗ Cons:</strong> Stylized mascot illustration cannot be auto-traced cleanly — it needs a designer in Illustrator to redraw the pig + dog as bezier paths. <strong>Hand-tracing the existing mascot is a separate job</strong> (~$200–500 from a vector illustrator on Fiverr/Upwork, or ~3–5 hrs in Illustrator if you do it yourself).</p>
+          <p style="margin-top:16px;"><strong>Recommended path:</strong> ship the hybrid SVG now, commission a vector trace later only if you need it for merch/embroidery/signage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── USAGE GUIDELINES ─────────── -->
+    <section>
+      <h2>Quick usage guide</h2>
+      <p class="section-sub">When to reach for which file.</p>
+      <div class="grid grid-3">
+        <article class="card" style="padding: 24px;">
+          <strong style="font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.5px; text-transform:uppercase;">Web &amp; product</strong>
+          <p style="font-size:14px; opacity:0.78; margin-top:12px; line-height:1.6;">
+            Header logo: <code>horizontal-cream.svg</code> at ~140–200px wide<br><br>
+            Favicon: <code>favicon-32.png</code> + <code>favicon-180.png</code><br><br>
+            Empty states: <code>mascot-256.png</code> alone
+          </p>
+        </article>
+        <article class="card" style="padding: 24px;">
+          <strong style="font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.5px; text-transform:uppercase;">Social</strong>
+          <p style="font-size:14px; opacity:0.78; margin-top:12px; line-height:1.6;">
+            Profile pic: <code>avatar-512.png</code><br><br>
+            X/Twitter banner: use <code>horizontal-dark-1600.png</code> as base, add your taglines<br><br>
+            YouTube channel art: stacked variant, full-bleed dark
+          </p>
+        </article>
+        <article class="card" style="padding: 24px;">
+          <strong style="font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.5px; text-transform:uppercase;">Video &amp; print</strong>
+          <p style="font-size:14px; opacity:0.78; margin-top:12px; line-height:1.6;">
+            YouTube intro / outro: <code>horizontal-dark-1600.png</code><br><br>
+            Print &lt; A4: any 1600px PNG<br><br>
+            Print &gt; A4 / merch: <strong>commission a vector trace first</strong>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─────────── DOWNLOAD ALL ─────────── -->
+    <div class="bundle">
+      <h3>Want everything as a zip?</h3>
+      <p>Ask me to "package the exports folder" and I'll bundle the whole <code>exports/</code> directory as a downloadable archive.</p>
+    </div>
+  </div>
+</body>
+</html>

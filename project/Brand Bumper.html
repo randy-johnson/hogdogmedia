@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hog Dog Media — Brand Bumper</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="design-system/tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="animations.jsx"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; }
+    body {
+      background: #F5E8D5;
+      color: #0E0E10;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 64px 32px 120px; }
+    .hero { display:flex; flex-direction:column; gap:16px; padding-bottom:48px; border-bottom: 1px solid rgba(14,14,16,0.12); margin-bottom: 48px; }
+    .eyebrow { font-size:13px; letter-spacing:0.32em; text-transform:uppercase; color:#D88B6E; }
+    h1 { font-family:'Fraunces',serif; font-weight:700; font-size:72px; line-height:1; letter-spacing:-0.02em; margin:0; }
+    .lead { max-width:700px; font-size:18px; line-height:1.55; opacity:0.78; margin:0; }
+
+    section { margin-bottom: 80px; }
+    h2 { font-family:'Anton',sans-serif; font-size:32px; line-height:1; letter-spacing:0.5px; margin:0 0 8px; text-transform:uppercase; }
+    .section-sub { font-size:14px; opacity:0.6; margin: 0 0 24px; }
+
+    /* Live preview */
+    .player {
+      position:relative;
+      width:100%; aspect-ratio: 16/9;
+      background:#0E0E10; border-radius: 6px; overflow:hidden;
+      border: 1px solid rgba(14,14,16,0.10);
+    }
+    .player .stage-host { position:absolute; inset:0; }
+    .stage-host > div { width:100% !important; height:100% !important; }
+
+    /* Frame strip */
+    .frames {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 880px) { .frames { grid-template-columns: repeat(2, 1fr); } }
+    .frame-card { position:relative; aspect-ratio:16/9; border-radius: 4px; overflow:hidden; background:#000; border:1px solid rgba(14,14,16,0.10); }
+    .frame-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    .frame-time { position:absolute; bottom:8px; left:8px; font-family:'Space Grotesk',monospace; font-size:11px; letter-spacing:0.1em; color:#F5E8D5; background:rgba(14,14,16,0.7); padding:3px 8px; border-radius:2px; }
+
+    /* Tech card */
+    .tech {
+      display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      background:#fff; border:1px solid rgba(14,14,16,0.10); border-radius: 6px;
+      padding: 32px;
+    }
+    @media (max-width: 880px) { .tech { grid-template-columns: 1fr 1fr; } }
+    .tech-stat label { display:block; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#D88B6E; margin-bottom:6px; }
+    .tech-stat strong { font-family:'Anton',sans-serif; font-size:32px; }
+    .tech-stat span { display:block; font-size:13px; opacity:0.6; }
+
+    /* Notes */
+    .notes { background: rgba(14,14,16,0.04); border-left: 3px solid #D88B6E; padding: 24px 28px; border-radius: 0 4px 4px 0; }
+    .notes p { margin:0 0 8px; font-size:14px; line-height:1.55; }
+    .notes p:last-child { margin:0; }
+    .notes code { font-family:'Space Grotesk',monospace; font-size:13px; background:rgba(14,14,16,0.08); padding:2px 6px; border-radius:3px; }
+
+    /* Render-out card */
+    .next-step { background:#0E0E10; color:#F5E8D5; border-radius:6px; padding:40px; margin-top: 24px; }
+    .next-step h3 { font-family:'Anton',sans-serif; font-size:24px; margin:0 0 12px; text-transform:uppercase; }
+    .next-step p { margin: 0 0 16px; opacity:0.85; line-height:1.6; font-size:15px; }
+    .next-step ul { margin:0; padding-left:20px; }
+    .next-step li { margin: 8px 0; opacity:0.85; line-height:1.6; font-size:15px; }
+    .next-step strong { color:#D88B6E; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="eyebrow">Brand Bumper · 3-second logo intro</span>
+      <h1>The bumper.</h1>
+      <p class="lead">A 3-second motion bumper for video intros — YouTube channel intro/outro, podcast video version, social posts. Pieces fly in, lock together, hold, fade out. Press space to play/pause, drag the timeline to scrub.</p>
+    </header>
+
+    <!-- ─────────── LIVE PREVIEW ─────────── -->
+    <section>
+      <h2>Live preview</h2>
+      <p class="section-sub">Loops automatically. Click anywhere on the timeline to scrub.</p>
+      <div class="player">
+        <div class="stage-host" id="stage-host"></div>
+      </div>
+      <div class="notes" style="margin-top:16px;">
+        <p><strong>Controls:</strong> <code>Space</code> play/pause · <code>←</code> / <code>→</code> seek 0.1s · <code>Shift</code> + arrows seek 1s · <code>0</code> reset · drag the playback bar to scrub.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── KEY FRAMES ─────────── -->
+    <section>
+      <h2>Key frames</h2>
+      <p class="section-sub">The eight beats of the bumper, rendered at 1920×1080.</p>
+      <div class="frames">
+        <figure class="frame-card"><img src="exports/bumper-frames/01-frame.png" alt="Frame 1"><span class="frame-time">0.20s · empty</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/02-frame.png" alt="Frame 2"><span class="frame-time">0.50s · line in</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/03-frame.png" alt="Frame 3"><span class="frame-time">0.80s · words in</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/04-frame.png" alt="Frame 4"><span class="frame-time">1.10s · mascot drops</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/05-frame.png" alt="Frame 5"><span class="frame-time">1.40s · settling</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/06-frame.png" alt="Frame 6"><span class="frame-time">1.80s · MEDIA</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/07-frame.png" alt="Frame 7"><span class="frame-time">2.20s · full lockup</span></figure>
+        <figure class="frame-card"><img src="exports/bumper-frames/08-frame.png" alt="Frame 8"><span class="frame-time">2.60s · fading</span></figure>
+      </div>
+    </section>
+
+    <!-- ─────────── SPECS ─────────── -->
+    <section>
+      <h2>Specs</h2>
+      <p class="section-sub">What this is, technically.</p>
+      <div class="tech">
+        <div class="tech-stat"><label>Duration</label><strong>3.0s</strong><span>Loops indefinitely</span></div>
+        <div class="tech-stat"><label>Resolution</label><strong>1920×1080</strong><span>Full HD, 16:9</span></div>
+        <div class="tech-stat"><label>Frame rate</label><strong>30 fps</strong><span>90 frames total</span></div>
+        <div class="tech-stat"><label>Format</label><strong>HTML/JS</strong><span>Render to MP4 below</span></div>
+      </div>
+    </section>
+
+    <!-- ─────────── CHOREOGRAPHY ─────────── -->
+    <section>
+      <h2>Choreography</h2>
+      <p class="section-sub">Element-by-element timing breakdown.</p>
+      <div class="notes" style="font-family:'Space Grotesk',monospace; font-size:13px; line-height:1.9;">
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:14px; margin-bottom:16px;"><strong>Layered entrance — 0.0s → 1.6s</strong></p>
+        <p>0.15s · accent line sweeps out (outExpo, 0.6s)</p>
+        <p>0.35s · HOG slides in from left, DOG slides in from right (outQuart, 0.55s)</p>
+        <p>0.60s · mascot drops with rotation, settles via outBack (0.7s)</p>
+        <p>1.10s · MEDIA tag fades in with rules extending (outQuart, 0.5s)</p>
+        <p>1.60s · tagline "Two animals · One story" rises in (outQuart, 0.4s)</p>
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:14px; margin: 16px 0;"><strong>Hold — 1.6s → 2.3s</strong></p>
+        <p>Lockup sits at full opacity for ~700ms — long enough to read, short enough to feel snappy.</p>
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:14px; margin: 16px 0;"><strong>Exit — 2.3s → 3.0s</strong></p>
+        <p>2.30s · everything fades out simultaneously (inQuad easing)</p>
+      </div>
+    </section>
+
+    <!-- ─────────── RENDER OUT ─────────── -->
+    <section>
+      <h2>Render to MP4 / GIF</h2>
+      <p class="section-sub">How to take this from HTML to a real video file.</p>
+      <div class="next-step">
+        <h3>What you have today</h3>
+        <p>This is a <strong>web-native bumper</strong> — pixel-perfect, infinitely tweakable, but it lives in a browser. The 8 keyframes above are real 1920×1080 PNGs you can use right now for thumbnails or static brand frames.</p>
+
+        <h3 style="margin-top:24px;">Three paths to a real video file</h3>
+        <ul>
+          <li><strong>Quickest (free):</strong> screen-record this page in QuickTime / OBS at 1080p. Good for testing, slightly imperfect timing.</li>
+          <li><strong>Best fidelity (manual):</strong> open this HTML in Chrome at 1920×1080, use Chrome DevTools' built-in <em>Recorder</em> or a tool like <code>puppeteer</code> + <code>ffmpeg</code> to capture frames at exactly 30fps and assemble. ~10 mins of setup, broadcast-quality output.</li>
+          <li><strong>Production (recommended):</strong> hand this animation spec + the keyframe PNGs to a motion designer. They'll rebuild it in After Effects in ~2 hours and deliver a properly mastered MP4 with motion blur, micro-easing polish, and audio sync points. ~$150–400 from a freelancer.</li>
+        </ul>
+
+        <h3 style="margin-top:24px;">If you want me to render it now</h3>
+        <p>Ask me to "render the bumper as a frame sequence" — I'll generate all 90 frames as numbered PNGs you can stitch into MP4 with this one command:</p>
+        <p style="font-family:'Space Grotesk',monospace; font-size:13px; background:rgba(216,139,110,0.15); padding:12px 16px; border-radius:4px;">ffmpeg -framerate 30 -i frame-%03d.png -c:v libx264 -pix_fmt yuv420p bumper.mp4</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- The actual animation, mounted into the player -->
+  <script type="text/babel">
+    const { useEffect } = React;
+    const DURATION = 3.0;
+    const W = 1920, H = 1080;
+
+    function Bumper() {
+      return (
+        <Stage width={W} height={H} duration={DURATION} fps={30} background="#0E0E10" autoplay loop persistKey="hogdog-bumper">
+          <Sprite start={0} end={DURATION}>
+            {(t) => {
+              const o = interpolate([0, 0.4, 2.6, 3.0], [0, 0.08, 0.08, 0])(t);
+              return <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 50% 55%, #2A1F1A 0%, #0E0E10 55%)', opacity: o }}/>;
+            }}
+          </Sprite>
+
+          <Sprite start={0.15} end={2.85}>
+            {(_, local) => {
+              const inProg = Easing.easeOutExpo(Math.min(1, local / 0.6));
+              const outProg = Math.max(0, (local - 2.4) / 0.3);
+              const w = inProg * (1 - outProg);
+              return <div style={{ position:'absolute', left:'50%', top:'30%', transform:`translate(-50%, -50%)`, width: `${w * 720}px`, height:'2px', background:'#D88B6E' }}/>;
+            }}
+          </Sprite>
+
+          <Sprite start={0.35} end={2.85}>
+            {(_, local) => {
+              const p = Easing.easeOutQuart(Math.min(1, local / 0.55));
+              const out = Math.max(0, (local - 2.3) / 0.4);
+              const x = interpolate([0, 1], [-260, 0])(p);
+              const o = p * (1 - Easing.easeInQuad(out));
+              return <div style={{ position:'absolute', left:'calc(50% - 120px)', top:'48%', transform:`translate(-100%, -50%) translateX(${x}px)`, fontFamily:"'Anton',sans-serif", fontSize:'220px', color:'#F5E8D5', letterSpacing:'-0.02em', lineHeight:0.86, opacity: o }}>HOG</div>;
+            }}
+          </Sprite>
+
+          <Sprite start={0.35} end={2.85}>
+            {(_, local) => {
+              const p = Easing.easeOutQuart(Math.min(1, local / 0.55));
+              const out = Math.max(0, (local - 2.3) / 0.4);
+              const x = interpolate([0, 1], [260, 0])(p);
+              const o = p * (1 - Easing.easeInQuad(out));
+              return <div style={{ position:'absolute', left:'calc(50% + 120px)', top:'48%', transform:`translate(0%, -50%) translateX(${x}px)`, fontFamily:"'Anton',sans-serif", fontSize:'220px', color:'#F5E8D5', letterSpacing:'-0.02em', lineHeight:0.86, opacity: o }}>DOG</div>;
+            }}
+          </Sprite>
+
+          <Sprite start={0.6} end={2.85}>
+            {(_, local) => {
+              const p = Easing.easeOutBack(Math.min(1, local / 0.7));
+              const out = Math.max(0, (local - 2.25) / 0.45);
+              const scale = interpolate([0, 1], [0.4, 1])(Math.min(1, p));
+              const rot = interpolate([0, 1], [-30, 0])(Math.min(1, p));
+              const o = Math.min(1, p) * (1 - Easing.easeInQuad(out));
+              return (
+                <div style={{ position:'absolute', left:'50%', top:'48%', transform:`translate(-50%, -50%) scale(${scale}) rotate(${rot}deg)`, width:'280px', height:'280px', opacity: o }}>
+                  <img src="assets/mascot-circle.png" alt="" style={{ width:'100%', height:'100%', objectFit:'contain' }}/>
+                </div>
+              );
+            }}
+          </Sprite>
+
+          <Sprite start={1.1} end={2.85}>
+            {(_, local) => {
+              const p = Easing.easeOutQuart(Math.min(1, local / 0.5));
+              const out = Math.max(0, (local - 2.2) / 0.45);
+              const o = p * (1 - Easing.easeInQuad(out));
+              const w = p * 220;
+              return (
+                <div style={{ position:'absolute', left:'50%', top:'72%', transform:'translate(-50%, -50%)', display:'flex', alignItems:'center', gap:'16px', opacity: o }}>
+                  <div style={{ width:`${w}px`, height:'2px', background:'#D88B6E' }}/>
+                  <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontWeight:500, fontSize:'34px', letterSpacing:'0.62em', color:'#D88B6E', textTransform:'uppercase', whiteSpace:'nowrap', paddingLeft:'20px' }}>MEDIA</div>
+                  <div style={{ width:`${w}px`, height:'2px', background:'#D88B6E' }}/>
+                </div>
+              );
+            }}
+          </Sprite>
+
+          <Sprite start={1.6} end={2.7}>
+            {(_, local) => {
+              const p = Easing.easeOutQuart(Math.min(1, local / 0.4));
+              const out = Math.max(0, (local - 0.7) / 0.4);
+              const o = p * (1 - Easing.easeInQuad(out));
+              const y = interpolate([0, 1], [12, 0])(Math.min(1, p));
+              return (
+                <div style={{ position:'absolute', left:'50%', top:'82%', transform:`translate(-50%, -50%) translateY(${y}px)`, fontFamily:"'Space Grotesk',sans-serif", fontSize:'22px', letterSpacing:'0.32em', color:'#F5E8D5', opacity: o * 0.7, textTransform:'uppercase' }}>Two animals · One story</div>
+              );
+            }}
+          </Sprite>
+        </Stage>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('stage-host')).render(<Bumper/>);
+  </script>
+</body>
+</html>

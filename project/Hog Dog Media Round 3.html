@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hog Dog Media — Round 3</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="concepts/shared.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #f0eee9; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    body { height: 100vh; overflow: hidden; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="refinements/V1.jsx"></script>
+  <script type="text/babel" src="refinements/V2.jsx"></script>
+  <script type="text/babel" src="refinements/V3.jsx"></script>
+  <script type="text/babel" src="refinements/V4.jsx"></script>
+  <script type="text/babel" src="refinements/V5.jsx"></script>
+  <script type="text/babel" src="refinements/V6.jsx"></script>
+  <script type="text/babel" src="refinements/V7.jsx"></script>
+
+  <script type="text/babel">
+    const W = 620, H = 380;
+    function App() {
+      return (
+        <DesignCanvas>
+          <DCSection id="amp" title="Ampersand mark — w/ real yin-yang" subtitle="C12 reworked: HOG &lt;mascot&gt; DOG">
+            <DCArtboard id="v1" label="V1 · Dark / Abril Fatface" width={W} height={H}><V1Ampersand/></DCArtboard>
+            <DCArtboard id="v2" label="V2 · Cream / Anton" width={W} height={H}><V2AmpersandLight/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="r1fix" title="Horizontal lockup — separated heads" subtitle="Hog and dog NOT touching">
+            <DCArtboard id="v3" label="V3 · Vector heads, divider" width={W} height={H}><V3SeparatedLockup/></DCArtboard>
+            <DCArtboard id="v4" label="V4 · Mascot halves flanking wordmark" width={W} height={H}><V4FlankingLockup/></DCArtboard>
+          </DCSection>
+
+          <DCSection id="r3fix" title="Circle badge — no Est. tagline" subtitle="Three takes on the bottom arc">
+            <DCArtboard id="v5" label="V5 · Diamonds along bottom" width={W} height={H}><V5BadgeMinimal/></DCArtboard>
+            <DCArtboard id="v6" label="V6 · MEDIA wraps bottom arc" width={W} height={H}><V6BadgeFullWrap/></DCArtboard>
+            <DCArtboard id="v7" label="V7 · Single top arc, clean" width={W} height={H}><V7BadgeClean/></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
