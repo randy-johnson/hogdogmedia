@@ -2,6 +2,11 @@
   publish = "."
 
 [[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon-32.png"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
