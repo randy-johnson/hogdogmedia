@@ -60,10 +60,16 @@
     }
     .nav-logo {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      gap: 7px;
+      gap: 4px;
       text-decoration: none;
       color: var(--ink);
+    }
+    .nav-logo-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
     .nav-logo .word {
       font-family: var(--font-display);
@@ -72,6 +78,24 @@
       letter-spacing: -0.01em;
     }
     .nav-logo img { width: 28px; height: 28px; object-fit: contain; }
+    .nav-logo-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-logo-tag .rule {
+      width: 14px;
+      height: 1px;
+      background: var(--coral);
+    }
+    .nav-logo-tag .label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 8px;
+      letter-spacing: 0.46em;
+      color: var(--coral);
+      text-transform: uppercase;
+    }
 
     .nav-links {
       display: flex;
@@ -172,9 +196,16 @@
 
   <nav class="nav">
     <a href="/" class="nav-logo" aria-label="Hog Dog Media home">
-      <span class="word">HOG</span>
-      <img src="project/assets/mascot-circle.png" alt="">
-      <span class="word">DOG</span>
+      <span class="nav-logo-row">
+        <span class="word">HOG</span>
+        <img src="project/assets/mascot-circle.png" alt="">
+        <span class="word">DOG</span>
+      </span>
+      <span class="nav-logo-tag" aria-hidden="true">
+        <span class="rule"></span>
+        <span class="label">Media</span>
+        <span class="rule"></span>
+      </span>
     </a>
     <ul class="nav-links">
       <li><a href="/#products">Products</a></li>
