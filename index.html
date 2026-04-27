@@ -470,6 +470,77 @@
       opacity: 0.45;
     }
 
+    /* ── MODAL ───────────────────────────────── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(14,14,16,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+    .modal-backdrop.is-open { display: flex; }
+    .modal {
+      background: var(--cream);
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      padding: 36px 32px 32px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(14,14,16,0.30);
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--ink);
+      opacity: 0.6;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .modal-close:hover { opacity: 1; background: var(--paper); }
+    .modal-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--coral);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .modal-subtitle {
+      font-size: 15px;
+      color: var(--mute);
+      margin-bottom: 22px;
+      line-height: 1.55;
+    }
+    .modal .form-footer { margin-top: 16px; }
+    .modal-success {
+      display: none;
+      background: #F0FAF4;
+      border: 1px solid rgba(60,179,113,0.3);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14px;
+      color: #1a5c37;
+      margin-top: 16px;
+    }
+
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 960px) {
       .nav { padding: 18px 28px; }
@@ -750,16 +821,16 @@
         <div class="footer-col-title">Media</div>
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">Newsletter</a></li>
+          <!-- <li><a href="#">YouTube</a></li> -->
+          <li><a href="#" id="newsletterLink">Newsletter</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Sponsor</a></li>
-          <li><a href="#">Privacy</a></li>
+          <li><a href="#contact" data-interest="partnership" id="sponsorLink">Sponsor</a></li>
+          <li><a href="/privacy.html">Privacy</a></li>
         </ul>
       </div>
     </div>
@@ -769,8 +840,58 @@
     </div>
   </footer>
 
+  <!-- ── NEWSLETTER MODAL ───────────────────────── -->
+  <div class="modal-backdrop" id="newsletterModal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle" hidden>
+    <div class="modal">
+      <button type="button" class="modal-close" id="newsletterClose" aria-label="Close">×</button>
+      <span class="modal-eyebrow">Newsletter</span>
+      <h3 class="modal-title" id="newsletterTitle">Get the dispatch.</h3>
+      <p class="modal-subtitle">
+        Behind-the-scenes notes from the studio — what we're building, what's broken,
+        and what we learned this week. No spam, unsubscribe anytime.
+      </p>
+
+      <form
+        name="newsletter"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        id="newsletterForm"
+      >
+        <input type="hidden" name="form-name" value="newsletter">
+        <div class="form-hp" aria-hidden="true">
+          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nl-email">Email address</label>
+          <input class="form-input" type="email" id="nl-email" name="email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+
+        <div class="form-footer">
+          <span class="form-note">No spam. Unsubscribe anytime.</span>
+          <button type="submit" class="btn btn--coral">Subscribe →</button>
+        </div>
+      </form>
+
+      <div class="modal-success" id="newsletterSuccess" role="alert">
+        ✓ You're in. Welcome to the dispatch.
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Netlify needs a static HTML copy of every form at build time so it can detect
+    the fields. The dynamic forms above are JS-submitted; this hidden block is
+    purely for Netlify's parser.
+  -->
+  <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
+    <input type="email" name="email">
+    <input name="bot-field">
+  </form>
+
   <script>
-    // Handle Netlify form AJAX submission for single-page feel
+    // ── Contact form (AJAX submit) ─────────────────
     const form = document.getElementById('contactForm');
     const success = document.getElementById('formSuccess');
 
@@ -796,6 +917,62 @@
         btn.textContent = original;
         btn.disabled = false;
         alert('Something went wrong. Please try again or email us directly.');
+      }
+    });
+
+    // ── Sponsor link → preselect partnership in contact form ──
+    const sponsorLink = document.getElementById('sponsorLink');
+    sponsorLink.addEventListener('click', (e) => {
+      const select = document.getElementById('cf-interest');
+      if (select) select.value = 'partnership';
+    });
+
+    // ── Newsletter modal ───────────────────────────
+    const modal = document.getElementById('newsletterModal');
+    const newsletterLink = document.getElementById('newsletterLink');
+    const newsletterClose = document.getElementById('newsletterClose');
+    const nlForm = document.getElementById('newsletterForm');
+    const nlSuccess = document.getElementById('newsletterSuccess');
+
+    function openModal(e) {
+      if (e) e.preventDefault();
+      modal.hidden = false;
+      modal.classList.add('is-open');
+      setTimeout(() => document.getElementById('nl-email')?.focus(), 50);
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.hidden = true;
+    }
+
+    newsletterLink.addEventListener('click', openModal);
+    newsletterClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    nlForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = nlForm.querySelector('[type="submit"]');
+      const original = btn.textContent;
+      btn.textContent = 'Subscribing…';
+      btn.disabled = true;
+
+      try {
+        const data = new FormData(nlForm);
+        const body = new URLSearchParams(data).toString();
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
+        });
+        nlForm.style.display = 'none';
+        nlSuccess.style.display = 'block';
+      } catch {
+        btn.textContent = original;
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
       }
     });
   </script>
