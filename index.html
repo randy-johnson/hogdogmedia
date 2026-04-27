@@ -880,16 +880,6 @@
     </div>
   </div>
 
-  <!--
-    Netlify needs a static HTML copy of every form at build time so it can detect
-    the fields. The dynamic forms above are JS-submitted; this hidden block is
-    purely for Netlify's parser.
-  -->
-  <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
-    <input type="email" name="email">
-    <input name="bot-field">
-  </form>
-
   <script>
     // ── Contact form (AJAX submit) ─────────────────
     const form = document.getElementById('contactForm');
@@ -962,11 +952,12 @@
       try {
         const data = new FormData(nlForm);
         const body = new URLSearchParams(data).toString();
-        await fetch('/', {
+        const response = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body,
         });
+        if (!response.ok) throw new Error(`Newsletter signup failed (${response.status})`);
         nlForm.style.display = 'none';
         nlSuccess.style.display = 'block';
       } catch {
